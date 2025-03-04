@@ -23,6 +23,7 @@ bool AlarmClock::ringsAt(int hours, int minutes) const {
 
 std::string AlarmClock::ring(int hours, int minutes) const {
     if (_hours == hours && _minutes == minutes) {
+        PlaySound(TEXT("alarm.wav"), NULL, SND_FILENAME | SND_ASYNC);
         return "Playing melody!";
     }
     return "";

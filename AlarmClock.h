@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
+#include <Windows.h>
+#include <mmsystem.h> 
 using namespace std;
+#pragma comment(lib, "winmm.lib")
 
 class AlarmClock {
 public:
@@ -9,7 +12,7 @@ public:
     int getHours() const;
     int getMinutes() const;
     bool ringsAt(int hours, int minutes) const;
-    std::string ring(int hours, int minutes) const;
+    std::string ring(int hours, int minutes) const;  
 private:
     int _hours = 0;
     int _minutes = 0;
