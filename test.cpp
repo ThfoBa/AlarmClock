@@ -26,3 +26,10 @@ TEST(AlarmClockTest, RingsAtSetTime) {
     EXPECT_TRUE(alarm.ringsAt(7, 30));  
     EXPECT_FALSE(alarm.ringsAt(7, 31)); 
 }
+
+TEST(AlarmClockTest, PlaysMelodyWhenRinging) {
+    AlarmClock alarm;
+    alarm.setTime(7, 30);
+
+    EXPECT_EQ(alarm.ring(), "Playing melody!");  
+}
