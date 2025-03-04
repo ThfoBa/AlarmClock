@@ -16,3 +16,7 @@ int AlarmClock::getHours() const {
 int AlarmClock::getMinutes() const {
     return _minutes;
 }
+
+bool AlarmClock::ringsAt(int hours, int minutes) const {
+    return _hours == hours && _minutes == minutes;
+}
