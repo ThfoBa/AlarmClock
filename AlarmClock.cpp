@@ -25,16 +25,23 @@ void AlarmClock::playSound() {
     if (isRinging) return;
 
     isRinging = true;
-    mciSendString(TEXT("open \"D:\\lab3\\alarm.mp3\" alias alarm"), NULL, 0, NULL);
-    while (isRinging) {
-        mciSendString(TEXT("play alarm wait"), NULL, 0, NULL);
-    }
+    alarmThread = std::thread([this]() {
+        mciSendString(TEXT("open \"D:\\lab3\\x64\\Debug\\alarm.mp3\" alias alarm"), NULL, 0, NULL);
 
-    mciSendString(TEXT("close alarm"), NULL, 0, NULL);
+        while (isRinging) {
+            mciSendString(TEXT("play alarm repeat"), NULL, 0, NULL);
+            std::this_thread::sleep_for(std::chrono::seconds(1)); 
+        }
+
+        mciSendString(TEXT("close alarm"), NULL, 0, NULL);
+        });
 }
 
 void AlarmClock::stopAlarm() {
     isRinging = false;
+    if (alarmThread.joinable()) {
+        alarmThread.join();
+    }
 }
 
 std::string AlarmClock::ring(int hours, int minutes) {

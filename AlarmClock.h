@@ -2,6 +2,8 @@
 #include <string>
 #include <Windows.h>
 #include <mmsystem.h> 
+#include <thread>
+#include <atomic>
 #pragma comment(lib, "winmm.lib")
 
 class AlarmClock {
@@ -14,9 +16,10 @@ public:
     void playSound();
     void stopAlarm();
     std::string ring(int hours, int minutes);
-    bool isRinging;
+    std::atomic<bool> isRinging{ false };
 private:
     int _hours = 0;
     int _minutes = 0;
+    std::thread alarmThread;
 };
 

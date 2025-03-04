@@ -3,8 +3,12 @@
 #include <thread>
 #include <chrono>
 #include <ctime>
+#include <conio.h>
+#include <Windows.h>
 
 int main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     AlarmClock alarm;
     int hours, minutes;
     std::cout << "Введите время будильника (часы и минуты): ";
@@ -18,6 +22,9 @@ int main() {
         int currentMinutes = localTime->tm_min;
         if (alarm.ringsAt(currentHours, currentMinutes)) {
             std::cout << alarm.ring(currentHours, currentMinutes) << std::endl;
+            std::cout << "Нажмите любую клавишу, чтобы выключить будильник.\n";
+            _getch();
+            alarm.stopAlarm();
             break; 
         }
         std::this_thread::sleep_for(std::chrono::seconds(1));
