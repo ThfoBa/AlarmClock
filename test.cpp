@@ -19,3 +19,10 @@ TEST(AlarmClockTest, RejectsInvalidTime) {
     EXPECT_FALSE(alarm.setTime(10, -5));  
     EXPECT_FALSE(alarm.setTime(10, 60));  
 }
+
+TEST(AlarmClockTest, RingsAtSetTime) {
+    AlarmClock alarm;
+    alarm.setTime(7, 30);
+    EXPECT_TRUE(alarm.ringsAt(7, 30));  
+    EXPECT_FALSE(alarm.ringsAt(7, 31)); 
+}
