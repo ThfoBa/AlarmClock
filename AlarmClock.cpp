@@ -1,4 +1,5 @@
 #include "AlarmClock.h"
+#include <string>
 
 bool AlarmClock::setTime(int hours, int minutes) {
     if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
@@ -19,4 +20,8 @@ int AlarmClock::getMinutes() const {
 
 bool AlarmClock::ringsAt(int hours, int minutes) const {
     return _hours == hours && _minutes == minutes;
+}
+
+std::string AlarmClock::ring() const {
+    return "Playing melody!";
 }
