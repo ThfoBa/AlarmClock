@@ -40,5 +40,5 @@ TEST(AlarmClockTest, SoundStartsAndStops) {
     alarm.playSound();
     EXPECT_TRUE(alarm.isRinging);
     alarm.stopAlarm();
-    EXPECT_FALSE(alarm.isRinging); 
+    EXPECT_FALSE(alarm.isRinging);
 }
