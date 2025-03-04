@@ -33,3 +33,11 @@ TEST(AlarmClockTest, PlaysMelodyWhenRinging) {
 
     EXPECT_EQ(alarm.ring(), "Playing melody!");  
 }
+
+TEST(AlarmClockTest, RingsOnlyAtSetTime) {
+    AlarmClock alarm;
+    alarm.setTime(7, 30);
+
+    EXPECT_EQ(alarm.ring(7, 30), "Playing melody!");  
+    EXPECT_EQ(alarm.ring(7, 31), "");                 
+}

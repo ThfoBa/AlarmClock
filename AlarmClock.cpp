@@ -1,5 +1,4 @@
 #include "AlarmClock.h"
-#include <string>
 
 bool AlarmClock::setTime(int hours, int minutes) {
     if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
