@@ -3,7 +3,7 @@
 class AlarmClock {
 public:
     AlarmClock() = default;  
-    void setTime(int hours, int minutes);
+    bool setTime(int hours, int minutes);
     int getHours() const;
     int getMinutes() const;
 private:
