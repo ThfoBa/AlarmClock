@@ -21,6 +21,9 @@ bool AlarmClock::ringsAt(int hours, int minutes) const {
     return _hours == hours && _minutes == minutes;
 }
 
-std::string AlarmClock::ring() const {
-    return "Playing melody!";
+std::string AlarmClock::ring(int hours, int minutes) const {
+    if (_hours == hours && _minutes == minutes) {
+        return "Playing melody!";
+    }
+    return "";
 }
