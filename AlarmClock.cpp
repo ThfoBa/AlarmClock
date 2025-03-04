@@ -9,21 +9,25 @@ bool AlarmClock::setTime(int hours, int minutes) {
     return true;
 }
 
-int AlarmClock::getHours() const {
+int AlarmClock::getHours() {
     return _hours;
 }
 
-int AlarmClock::getMinutes() const {
+int AlarmClock::getMinutes() {
     return _minutes;
 }
 
-bool AlarmClock::ringsAt(int hours, int minutes) const {
+bool AlarmClock::ringsAt(int hours, int minutes) {
     return _hours == hours && _minutes == minutes;
 }
 
-std::string AlarmClock::ring(int hours, int minutes) const {
+void AlarmClock::playSound() {
+    PlaySound(TEXT("alarm.mp3"), NULL, SND_FILENAME | SND_ASYNC);
+}
+
+std::string AlarmClock::ring(int hours, int minutes) {
     if (_hours == hours && _minutes == minutes) {
-        PlaySound(TEXT("alarm.wav"), NULL, SND_FILENAME | SND_ASYNC);
+        playSound();
         return "Playing melody!";
     }
     return "";
