@@ -22,7 +22,19 @@ bool AlarmClock::ringsAt(int hours, int minutes) {
 }
 
 void AlarmClock::playSound() {
-    PlaySound(TEXT("alarm.mp3"), NULL, SND_FILENAME | SND_ASYNC);
+    if (isRinging) return;
+
+    isRinging = true;
+    mciSendString(TEXT("open \"D:\\lab3\\alarm.mp3\" alias alarm"), NULL, 0, NULL);
+    while (isRinging) {
+        mciSendString(TEXT("play alarm wait"), NULL, 0, NULL);
+    }
+
+    mciSendString(TEXT("close alarm"), NULL, 0, NULL);
+}
+
+void AlarmClock::stopAlarm() {
+    isRinging = false;
 }
 
 std::string AlarmClock::ring(int hours, int minutes) {
